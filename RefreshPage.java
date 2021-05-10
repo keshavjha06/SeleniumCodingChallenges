@@ -3,7 +3,21 @@ package seleniumchallenge;
 public class RefreshPage {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://google.com/");
+		driver.manage().window().maximize();
+		driver.navigate().refresh();
+		
+		driver.get("https://www.facebook.com");
+		driver.get(driver.getCurrentUrl());
+		
+		driver.get("https://www.yahoo.com");
+		driver.navigate().to(driver.getCurrentUrl());
+		
+		driver.get("https://www.guru99.com");
+		driver. findElement(By.id("gsc-i-id2")).sendKeys(Keys.F5); 
+		
+		driver.close();
 
 	}
 
