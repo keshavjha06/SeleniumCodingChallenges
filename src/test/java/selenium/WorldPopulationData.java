@@ -1,8 +1,12 @@
 package selenium;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.List;
 
 public class WorldPopulationData {
 
@@ -10,6 +14,7 @@ public class WorldPopulationData {
 
 
     public static void main(String[] args) throws InterruptedException {
+        WebDriverManager.chromedriver().setup();
         String xpath_currentpop = "//div[@class='maincounter-number']/span[@class='rts-counter']";
 
         String xpath_today_thisYear_pop = "//div[text()='This year' or text()='Today']//parent::div//span[@class='rts-counter']";
@@ -34,17 +39,18 @@ public class WorldPopulationData {
             count++;
         }
 
+
     }
 
-    public static void printPopData(String locator) throws InterruptedException {
-//		
-//			List<WebElement> popList = driver.findElements(By.xpath(locator));
-//			for(WebElement e: popList) 
-//			{
-//				System.out.println(e.getText());
-//			}
-        driver.findElements(By.xpath(locator)).stream().forEach(e -> System.out.println(e.getText()));
 
+    public static void printPopData(String locator) {
+
+			/*List<WebElement> popList = driver.findElements(By.xpath(locator));
+			for(WebElement e: popList)
+			{
+				System.out.println(e.getText());
+			}*/
+        driver.findElements(By.xpath(locator)).stream().forEach(e -> System.out.println(e.getText()));
     }
 }
 
