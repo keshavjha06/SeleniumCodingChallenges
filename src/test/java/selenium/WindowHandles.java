@@ -22,6 +22,7 @@ public class WindowHandles {
         String parentWindow = driver.getWindowHandle();
         Set<String> s1 = driver.getWindowHandles();
         Iterator<String> i1 = s1.iterator();
+        int numberOfWindows = driver.getWindowHandles().size();
 
         while (i1.hasNext()) {
             String childWindow = i1.next();
@@ -31,6 +32,7 @@ public class WindowHandles {
                 System.out.println("Heading of child window is " + text.getText());
                 driver.close();
                 System.out.println("Child window closed");
+                System.out.println(numberOfWindows);
             }
         }
 
