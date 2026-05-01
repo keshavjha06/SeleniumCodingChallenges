@@ -8,11 +8,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class HandlingPushNotifications {
 
     public static void main(String[] args) {
-        WebDriverManager.chromedriver().setup();
+        WebDriver driver = WebDriverManager.chromedriver().create();
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
-        WebDriver driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         driver.get("https://www.redbus.in/");

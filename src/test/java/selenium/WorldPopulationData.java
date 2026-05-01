@@ -3,24 +3,17 @@ package selenium;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.List;
 
 public class WorldPopulationData {
 
     static WebDriver driver;
 
-
     public static void main(String[] args) throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
+        driver = WebDriverManager.chromedriver().create();
         String xpath_currentpop = "//div[@class='maincounter-number']/span[@class='rts-counter']";
 
         String xpath_today_thisYear_pop = "//div[text()='This year' or text()='Today']//parent::div//span[@class='rts-counter']";
 
-
-        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.worldometers.info/world-population/");
         int count = 1;
@@ -39,20 +32,17 @@ public class WorldPopulationData {
             count++;
         }
 
-
     }
-
 
     public static void printPopData(String locator) {
 
-			/*List<WebElement> popList = driver.findElements(By.xpath(locator));
-			for(WebElement e: popList)
-			{
-				System.out.println(e.getText());
-			}*/
+        /*
+         * List<WebElement> popList = driver.findElements(By.xpath(locator));
+         * for(WebElement e: popList)
+         * {
+         * System.out.println(e.getText());
+         * }
+         */
         driver.findElements(By.xpath(locator)).stream().forEach(e -> System.out.println(e.getText()));
     }
 }
-
-	
-

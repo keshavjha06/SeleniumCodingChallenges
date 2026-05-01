@@ -7,17 +7,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class WindowHandles {
     public static void main(String[] args) throws Exception {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = WebDriverManager.chromedriver().create();
 
         driver.manage().window().maximize();
-
         driver.get("https://demoqa.com/browser-windows");
-
         driver.findElement(By.id("windowButton")).click();
         String parentWindow = driver.getWindowHandle();
         Set<String> s1 = driver.getWindowHandles();
@@ -32,11 +28,11 @@ public class WindowHandles {
                 System.out.println("Heading of child window is " + text.getText());
                 driver.close();
                 System.out.println("Child window closed");
-                System.out.println(numberOfWindows);
+                System.out.println("Number of windows: " + numberOfWindows);
             }
         }
 
-        //  Switch back to the main window which is the parent window.
+        // Switch back to the main window which is the parent window.
         driver.switchTo().window(parentWindow);
         driver.quit();
     }
